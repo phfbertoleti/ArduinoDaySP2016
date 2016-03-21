@@ -1,5 +1,4 @@
-# ArduinoDaySP2016
-GitHub do projeto desenvolvido para a palestra "Embedded Systems e IoT: do bare-metal à comunicação wireless segura", realizada no evento Arduino Day SP 2016.
+#GitHub do projeto desenvolvido para a palestra "Embedded Systems e IoT: do bare-metal à comunicação wireless segura", realizada no evento Arduino Day SP 2016.
 Aqui, consta:
 
 - Firmware completo do leitor de luminosidade (Arduino Nano v3.0)
