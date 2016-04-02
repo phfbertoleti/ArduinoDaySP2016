@@ -62,7 +62,7 @@
 			mosq.onmessage = function(topic, payload, qos){
 				//Utiliza o Google  Code Crypto-JS para descriptografar
 				var p = document.createElement("p");
-				var SomaBytesChavePublica = 1116;
+				var SomaBytesChavePublica = 1012;
 				var PayloadEmBytes = atob(payload);  
 				var CodigoChar = 0;
 				var CharDescriptografado=" ";
@@ -85,13 +85,13 @@
 			};
 		}
 		Page.prototype.connect = function(){
-			//-----------IMPORTANTE -----------
+		    //-----------IMPORTANTE -----------
 			// - Descomentar a linha 'var url = "ws://test.mosquitto.org:8080/mqtt";' para utilizar o broker test.mosquitto.org
 			// - Descomentar a linha 'var url = "ws://iot.eclipse.org/ws";' para utilizar o broker iot.eclipse.org
 			//---------------------------------
 		
 			//var url = "ws://test.mosquitto.org:8080/mqtt";
-			var url = "ws://iot.eclipse.org/ws";		
+			var url = "ws://iot.eclipse.org/ws";			
 			mosq.connect(url);
 		};
 		Page.prototype.disconnect = function(){
@@ -111,7 +111,7 @@
 			var emailaviso = $('#email-aviso')[0].value;
 			var metaconsumo = $('#meta-comsumo')[0].value;
 			var payload = "EnviaConfigsMetaAgua"+">"+metaconsumo+">"+emailaviso;
-			var SomaBytesChavePublica = 1116;
+			var SomaBytesChavePublica = 1012;
 		    var CodigoChar = 0;
 			var CharCriptografado=" ";
 			var i=0;
@@ -129,19 +129,84 @@
 		};
 		
 		Page.prototype.RequisitaInformacoes = function(){
-			alert("Função indisponível no evento Arduino Day 2016");
+			var topic = "ArduinoDay2016SPEnvia";
+			var payload = "RequisitaInformacoesAgua";			
+			var SomaBytesChavePublica = 1012;
+		    var CodigoChar = 0;
+			var CharCriptografado=" ";
+			var i=0;
+			var StringCriptografada = "";
+			var TamanhoString = payload.length;
+	
+			for(i=0; i<TamanhoString; i++)
+			{				
+				CodigoChar = payload.charCodeAt(i);	
+				CharCriptografado = ((CodigoChar+SomaBytesChavePublica) & 0xFF);
+				StringCriptografada = StringCriptografada + String.fromCharCode(CharCriptografado);
+			}
+            
+			mosq.publish(topic, btoa(StringCriptografada), 0);
 		};
 		
 		Page.prototype.ResetConsumo = function(){
-			alert("Função indisponível no evento Arduino Day 2016");
+			var topic = "ArduinoDay2016SPEnvia";
+			var payload = "ResetConsumoAgua";
+			var SomaBytesChavePublica = 1012;
+		    var CodigoChar = 0;
+			var CharCriptografado=" ";
+			var i=0;
+			var StringCriptografada = "";
+			var TamanhoString = payload.length;
+	
+			for(i=0; i<TamanhoString; i++)
+			{				
+				CodigoChar = payload.charCodeAt(i);	
+				CharCriptografado = ((CodigoChar+SomaBytesChavePublica) & 0xFF);
+				StringCriptografada = StringCriptografada + String.fromCharCode(CharCriptografado);
+			}
+            
+			mosq.publish(topic, btoa(StringCriptografada), 0);
 		};
 		
 		Page.prototype.IniciaCalibracao = function(){
-			alert("Função indisponível no evento Arduino Day 2016");		
+			var topic = "ArduinoDay2016SPEnvia";
+			var payload = "IniciaCalibracaoAgua";
+			var SomaBytesChavePublica = 1012;
+		    var CodigoChar = 0;
+			var CharCriptografado=" ";
+			var i=0;
+			var StringCriptografada = "";
+			var TamanhoString = payload.length;
+	
+			for(i=0; i<TamanhoString; i++)
+			{				
+				CodigoChar = payload.charCodeAt(i);	
+				CharCriptografado = ((CodigoChar+SomaBytesChavePublica) & 0xFF);
+				StringCriptografada = StringCriptografada + String.fromCharCode(CharCriptografado);
+			}
+            
+			mosq.publish(topic, btoa(StringCriptografada), 0);
+		
 		};
 
 		Page.prototype.FinalizaCalibracao = function(){
-			alert("Função indisponível no evento Arduino Day 2016");
+			var topic = "ArduinoDay2016SPEnvia";
+			var payload = "FinalizaCalibracaoAgua";
+			var SomaBytesChavePublica = 1012;
+		    var CodigoChar = 0;
+			var CharCriptografado=" ";
+			var i=0;
+			var StringCriptografada = "";
+			var TamanhoString = payload.length;
+	
+			for(i=0; i<TamanhoString; i++)
+			{				
+				CodigoChar = payload.charCodeAt(i);	
+				CharCriptografado = ((CodigoChar+SomaBytesChavePublica) & 0xFF);
+				StringCriptografada = StringCriptografada + String.fromCharCode(CharCriptografado);
+			}
+            
+			mosq.publish(topic, btoa(StringCriptografada), 0);
 		};
 		
 		return Page;
